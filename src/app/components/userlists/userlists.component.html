@@ -1,0 +1,167 @@
+<div class="user-list-container" *ngIf="userlists">
+  <div
+    class="user-card-wrapper"
+    style="
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    "
+  >
+    <!-- Top 3 Users Cards -->
+    <div class="user-card user-left" *ngFor="let user of userlists.slice(0, 1)">
+      <img
+        alt="{{ user.username }}'s avatar"
+        src="../../../assets/img/soakedlogo.png"
+        width="96"
+        height="96"
+        class="user-avatar"
+        style="
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 0.5rem;
+          border-radius: 5px;
+        "
+      />
+      <div class="username-wrapper">
+        <span class="username">{{ reAdjustUserName(user.username) }}</span>
+      </div>
+      <div class="user-wager-info">
+        <span class="wagered-label">Wagered: </span>
+        <span class="amount">$ {{ user.wagered.toFixed(2) }}</span>
+      </div>
+      <span class="reward-info">
+        <div class="amount-wrapper">
+          <!-- <span class="amount glow"
+            >$ {{ user.weightedWagered | integer }}</span
+          > -->
+          <span class="amount glow"
+            >$ {{ this.reward[1] }}</span
+          >
+        </div>
+      </span>
+    </div>
+
+    <div
+      class="user-card user-center"
+      style="margin-top: 2rem"
+      *ngFor="let user of userlists.slice(1, 2)"
+    >
+      <img
+        alt="{{ user.username }}'s avatar"
+        src="../../../assets/img/soakedlogo.png"
+        style="
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 0.5rem;
+          border-radius: 5px;
+        "
+        width="96"
+        height="96"
+        class="user-avatar"
+      />
+      <div class="username-wrapper">
+        <span class="username">{{ reAdjustUserName(user.username) }}</span>
+      </div>
+      <div class="user-wager-info">
+        <span class="wagered-label">Wagered: </span>
+        <span class="amount">$ {{ user.wagered.toFixed(2) }}</span>
+      </div>
+      <span class="reward-info">
+        <div class="amount-wrapper">
+          <span class="amount glow"
+            >$ {{ this.reward[2] }}</span
+          >
+        </div>
+      </span>
+    </div>
+
+    <div
+      class="user-card user-right"
+      style="margin-top: 2rem"
+      *ngFor="let user of userlists.slice(2, 3)"
+    >
+      <img
+        alt="{{ user.username }}'s avatar"
+        src="../../../assets/img/soakedlogo.png"
+        style="
+          background-color: rgba(0, 0, 0, 0.5);
+          padding: 0.5rem;
+          border-radius: 5px;
+        "
+        width="96"
+        height="96"
+        class="user-avatar"
+      />
+      <div class="username-wrapper">
+        <span class="username">{{ reAdjustUserName(user.username) }}</span>
+      </div>
+      <div class="user-wager-info">
+        <span class="wagered-label">Wagered: </span>
+        <span class="amount">$ {{ user.wagered.toFixed(2) }}</span>
+      </div>
+      <span class="reward-info">
+        <div class="amount-wrapper">
+          <span class="amount glow"
+            >$ {{ this.reward[3] }}</span
+          >
+        </div>
+      </span>
+    </div>
+  </div>
+  <div class="countdown-timer">
+    <div class="countdown-content">
+      <span class="countdown-title">
+        <span class="glow-text glow">ENDING</span> in
+      </span>
+      <span class="countdown-subtitle" id="countdown">
+        <!-- {{ daysLeft }} Days {{ hoursLeft }}:{{ minutesLeft }}:{{ secondsLeft }} -->
+        <span #days>0</span> Days <span #hours>0</span>:<span #minutes>0</span
+        >:<span #seconds>0</span>
+        <!-- 26 Days 03:39:11 -->
+      </span>
+    </div>
+  </div>
+
+  <div class="row lista listdetails">
+    <div class="hide-mobile col-2 html">Place</div>
+    <div class="col-5 html">User</div>
+    <div class="col-2 html">Reward</div>
+    <div class="col-3 html">Wagered</div>
+  </div>
+
+  <div
+    class="row list"
+    *ngFor="let list of finalList.slice(3, 10); let i = index"
+  >
+    <div class="hide-mobile col-2 html">
+      <b style="color: #6528c9; font-weight: bolder">#</b
+      ><b style="font-weight: 500">{{ i + 4 }}</b>
+    </div>
+    <div class="col-5 html">
+      <img
+        src="../../../assets/img/soakedlogo.png"
+        style="max-width: 2rem; border-radius: 4px; margin-right: 1rem"
+      /><span style="font-weight: 500">{{
+        reAdjustUserName(list.username)
+      }}</span>
+    </div>
+    <div class="col-2 html">
+      <span class="reward-info">
+        <div class="amount-wrapper">
+          <!-- <span class="amount glow"
+            >$ {{ list.weightedWagered | integer }}</span
+          > -->
+          <span class="amount glow">$ {{ this.reward[i + 4] }}</span>
+        </div>
+      </span>
+    </div>
+    <div class="col-3 html">
+      <div class="price-wrapper" style="color: #fff">
+        <div
+          class="price-image-wrapper"
+          style="height: 0rem; width: 0rem; margin-right: 0px"
+        ></div>
+        $ {{ list.wagered.toFixed(2) }}
+      </div>
+    </div>
+  </div>
+</div>
